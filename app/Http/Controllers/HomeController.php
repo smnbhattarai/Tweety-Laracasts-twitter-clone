@@ -22,11 +22,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        $tweet = Tweet::latest()->get();
-        return view('home', [
-            'tweets' => auth()->user()->timeline(),
-        ]);
-    }
+//    public function index()
+//    {
+//        return view('home', [
+//            'tweets' => auth()->user()->timeline(),
+//        ]);
+//    }
 }
