@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, Followable;
 
     protected $fillable = [
         'name', 'email', 'password',
@@ -34,23 +34,19 @@ class User extends Authenticatable
         return 'https://i.pravatar.cc/150?u=' . $this->email;
     }
 
-    public function follows()
-    {
-        return $this->belongsToMany(User::class, 'follows', 'user_id', 'following_user_id');
-    }
-
-    public function follow(User $user)
-    {
-        return $this->follows()->save($user);
-    }
-
     public function tweets()
     {
-        return $this->hasMany(Tweet::class);
+        return $this->hasMany(Tweet::class)->latest();
     }
 
     public function getRouteKeyName()
     {
         return 'name';
     }
+
+    public function path()
+    {
+        return route('profile', $this->name);
+    }
+
 }
