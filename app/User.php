@@ -31,7 +31,7 @@ class User extends Authenticatable
 
     public function getAvatarAttribute($value)
     {
-        if($value) {
+        if ($value) {
             return asset('storage/' . $value);
         }
         return 'https://i.pravatar.cc/150?u=' . $this->email;
@@ -51,6 +51,11 @@ class User extends Authenticatable
     {
         $path = route('profile', $this->username);
         return $append ? "{$path}/{$append}" : $path;
+    }
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
     }
 
 }

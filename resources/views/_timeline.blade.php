@@ -2,7 +2,7 @@
 
     @forelse($tweets as $tweet)
         @include('_tweet')
-        @empty
+    @empty
         <p class="p-5">No tweets yet.</p>
     @endforelse
 
