@@ -37,7 +37,7 @@ trait Followable
         if ($this->following($user)) {
             return $this->unfollow($user);
         }
-        
+
         return $this->follow($user);
     }
 }
